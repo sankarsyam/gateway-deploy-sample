@@ -1,0 +1,19 @@
+headerToken:
+  name: x-api-key
+  in: header
+  description: auth token
+  required: true
+  type: string
+
+# headerToken:
+#   name: token
+#   in: header
+#   description: auth token
+#   required: true
+#   type: string
+
+# queryLocationName:
+#   name: locationName
+#   in: query
+#   description: Name of the location to search
+#   type: string

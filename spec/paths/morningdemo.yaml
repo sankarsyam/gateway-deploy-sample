@@ -1,0 +1,27 @@
+/locations:
+  get:
+    tags:
+      - morningdemo
+    summary: Get local informations
+    description: to check api result
+    parameters:
+      - $ref: '#/parameters/headerToken'
+    responses:
+      200:
+        description: success
+        schema: 
+          $ref: '#/definitions/location'
+      404:
+        $ref: '#/responses/404'
+    security:
+      - api_key: []
+    x-amazon-apigateway-integration:
+        responses:
+          default:
+            statusCode: "200"
+        requestParameters:
+          integration.request.header.x-api-key: "method.request.header.x-api-key"
+        uri: "https://jsonplaceholder.typicode.com/posts"
+        passthroughBehavior: "when_no_match"
+        httpMethod: "GET"
+        type: "http"

@@ -1,0 +1,110 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "apike-auto-merge",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Auto generate gateway",
+      "description": "Sample swagger tile to create API"
+    }
+  ],
+  "definitions": {
+    "location": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "number"
+        },
+        "id": {
+          "type": "number"
+        },
+        "title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "headerToken": {
+      "name": "x-api-key",
+      "in": "header",
+      "description": "auth token",
+      "required": true,
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/locations": {
+      "get": {
+        "tags": [
+          "morningdemo"
+        ],
+        "summary": "Get local informations",
+        "description": "to check api result",
+        "parameters": [
+          {
+            "$ref": "#/parameters/headerToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/location"
+            }
+          },
+          "404": {
+            "$ref": "#/responses/404"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ],
+        "x-amazon-apigateway-integration": {
+          "responses": {
+            "default": {
+              "statusCode": "200"
+            }
+          },
+          "requestParameters": {
+            "integration.request.header.x-api-key": "method.request.header.x-api-key"
+          },
+          "uri": "https://jsonplaceholder.typicode.com/posts",
+          "passthroughBehavior": "when_no_match",
+          "httpMethod": "GET",
+          "type": "http"
+        }
+      }
+    }
+  },
+  "responses": {
+    "404": {
+      "description": "Error response",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "x-api-key",
+      "in": "header"
+    }
+  }
+}

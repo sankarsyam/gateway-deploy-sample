@@ -1,0 +1,9 @@
+swagger: '2.0'
+info:
+  title: 'apike-auto-merge'
+  version: 1.0.0
+
+tags:
+  - name: Auto generate gateway
+    description: Sample swagger tile to create API
+    

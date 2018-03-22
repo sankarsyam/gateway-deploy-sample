@@ -1,0 +1,59 @@
+{
+  "name": "API-Gateway",
+  "version": "1.0.0",
+  "description": "API service",
+  "main": "server.js",
+  "scripts": {
+    "precommit": "lint-staged",
+    "prestart": "node scripts/specBuilder.js",
+    "start": "babel-node server.js --exec babel-node --presets es2015,stage-2",
+    "spec:build": "node scripts/specBuilder.js",
+    "test": "node scripts/specBuilder.js & nyc mocha --timeout 15000 --compilers js:babel-core/register ./test/ -name '*_test.js' --recursive ",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "repository": {},
+  "author": "Cognizant Technology Solutions",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "body-parser": "^1.17.2",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.3",
+    "js-yaml": "^3.10.0",
+    "nyc": "^11.4.1",
+    "path": "^0.12.7",
+    "prettier": "^1.3.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2",
+    "swagger-tools": "^0.10.3",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "cross-env": "^5.0.1",
+    "expect": "^1.20.2",
+    "husky": "^0.13.4",
+    "lint-staged": "^3.5.1",
+    "mocha": "^3.4.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --trailing-comma es5 --write --print-width 100",
+      "git add"
+    ]
+  }
+}
